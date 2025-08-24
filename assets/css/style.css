@@ -1,0 +1,130 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   /* background-color: rgba(41, 35, 35, 0.788);*/
+    /* color: aliceblue; */
+    background-color: rgb(7, 25, 25);
+    
+    color: aliceblue;
+}
+
+.header{
+    display: flex;
+    margin: 30px;
+    gap: 50px;
+}
+
+img{
+    height: 40px;
+    width: 40px;
+}
+
+/* .search-bar {
+        background-color: rgba(255, 255, 255, 0.662);
+        border-radius: 30px;
+        padding: 8px 15px;
+    }
+
+    .form-control {
+        background: transparent;
+        border: none;
+        color: rgb(241, 238, 238);
+    }
+
+    /* .form-control:focus {
+        background: transparent;
+        box-shadow: none;
+        color: white;
+    } */
+
+    /*.btn-search {
+        background-color: rgba(7, 116, 133, 0.2);
+        color: rgb(11, 5, 100);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    } */
+
+.main-container{
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.main-display{
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    padding: 50px;
+    border-radius: 20px;
+    justify-content: center;
+    width: 150px;
+    height: 370px;
+
+    
+}
+
+
+.line1{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 100px;
+    margin-bottom: 50px;
+  
+}
+
+
+.line2{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 100px;
+    margin-bottom: 50px;
+
+    
+}
+
+.card-details {
+    border-radius: 20px;
+    padding: 30px;
+    background-color: rgb(103, 142, 225);
+    width: 150px;
+    height: 150px;
+    text-align: center;
+
+}
+
+
+.extra-details{
+    display: flex;
+    margin-top: 50px;
+    margin-left: 100px;
+    justify-content: space-evenly;
+
+}
+
+.card-extra{
+    border: none;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: rgb(103, 142, 225);
+}
+
+.hourly-forecast{
+    display: flex;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(103, 142, 225);
+    margin-top: 50px;
+    padding: 20px;
+    justify-content: space-evenly;
+}
+
+.hourly{
+    display: grid;
+    gap: 5px;
+    
+    
+}

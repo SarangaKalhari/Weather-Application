@@ -4,8 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
+
+
+    <header>
+        <div class="header">
+            <div>
+                <img src="" class="">
+            </div>
+            <div>
+                <h1>Weather Application</h1>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="mb-4">
+        <form id="search-form">
+            <div class="input-group search-bar">
+                <input type="text" id="search-location" class="form-control" placeholder="Enter location..."
+                    aria-label="Location">
+                <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="main-container">
+
+        <div class="main-display">
+            <div class="date"></div>
+            <div>
+                <img src="/assets/image/cloudy.png" style="height: 120px; width: 120px;" id="">
+
+            </div>
+            <div class="location-name">Galle, Sri Lanka</div>
+            <div class="temperature">26 C/28 C</div>
+
+        </div>
+
+        <div class="main-details">
+            <div class="current-details">
+                <div class="line1">
+                    <div class="card-details" data-aos="flip-left">
+                        <h2>Humidity</h2>
+                        76%
+                    </div>
+
+                    <div class="card-details">
+                        <h2>Visibility</h2>
+                        10 km
+                    </div>
+
+
+                    <div class="card-details">
+                        <h2>Cloud Cover</h2>
+                        44%
+                    </div>
+                </div>
+
+                <div class="line2">
+                    <div class="card-details">
+                        <h2>UV Index</h2>
+                        High
+                    </div>
+
+                    <div class="card-details">
+                        <h2>Pressure</h2>
+                        1011 hPa
+                    </div>
+
+                    <div class="card-details">
+                        <h2>Wind Speed</h2>
+                        12 km/h
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="extra-details">
+        <div class="card-extra">
+            <h2>Wind direction</h2>
+            southwest
+        </div>
+
+        <div class="card-extra">
+            <h2>Dew Point</h2>
+            12 km/h
+        </div>
+
+        <div class="card-extra">
+            <h2>Heat Index</h2>
+            12 km/h
+        </div>
+
+        <div class="card-extra">
+            <h2>Wind Chill</h2>
+            12 km/h
+        </div>
+    </div>
+
+
+
+    <div class="hourly-forecast">
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>00.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>01.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>02.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>03.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>04.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>05.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>06.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>07.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>08.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>09.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>10.00 A.M.</p>
+        </div>
+
+        <div class="hourly">
+            <img src="/assets/image/cloudy.png">
+            <p>11.00 A.M.</p>
+        </div>
+
+        
+    </div>
+
+
+
+    <div class="next-5days">
+        <div>
+
+        </div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+
+    </div>
     
+    <script src="/assets/js/app.js"></script>
+
 </body>
 </html>
