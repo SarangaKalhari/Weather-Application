@@ -6,24 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    
+
 </head>
 
-<body>
+<body class="bg-[#0b1220] min-h-screen text-gray-200">
 
+    <!-- Header PArt -->
     <header class="bg-[#111a2e] rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
         <!-- Left: App / Location -->
-         <div class="flex items-center gap-3">
-         <img src="assets/image/logo.png" class="logo">
-        <div>
-            <h1 class="text-lg font-semibold text-gray-200">
-                Weather Application
-            </h1> 
+        <div class="flex items-center gap-3">
+            <img src="assets/image/logo.png" class="logo">
+            <div>
+                <h1 class="text-lg font-semibold text-gray-200">
+                    Weather Application
+                </h1>
+            </div>
         </div>
-         </div>
 
-         <!-- Right: Search -->
+        <!-- Right: Search -->
         <div class="flex items-center space-x-3">
             <input type="text" placeholder="Search city..." class="bg-[#0b1220] text-gray-200 placeholder-gray-500 
              px-4 py-2 rounded-xl outline-none 
@@ -36,6 +37,23 @@
         </div>
 
     </header>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 ">
+
+        <!-- Main Weather -->
+        <section class="col-span-6 bg-[#111a2e] rounded-2xl p-6">
+            <p class="text-5xl font-bold mt-4">63.8°F</p>
+            <p class="text-gray-400 mt-2">Clear Sky</p>
+            <h1 class="text-xl font-semibold">Galle , Sri Lanka</h1>
+
+            <div class="mt-6 text-sm text-gray-400">
+                A bright, sunny day with no clouds in sight.
+            </div>
+        </section>
+
+    </div>
+
 
     <!-- 
     <header>
