@@ -1,7 +1,7 @@
-body{
+
+/* body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   /* background-color: rgba(41, 35, 35, 0.788);*/
-    /* color: aliceblue; */
+   
     background-color: rgb(7, 25, 25);
     
     color: aliceblue;
@@ -18,32 +18,7 @@ img{
     width: 40px;
 }
 
-/* .search-bar {
-        background-color: rgba(255, 255, 255, 0.662);
-        border-radius: 30px;
-        padding: 8px 15px;
-    }
 
-    .form-control {
-        background: transparent;
-        border: none;
-        color: rgb(241, 238, 238);
-    }
-
-    /* .form-control:focus {
-        background: transparent;
-        box-shadow: none;
-        color: white;
-    } */
-
-    /*.btn-search {
-        background-color: rgba(7, 116, 133, 0.2);
-        color: rgb(11, 5, 100);
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-    } */
 
 .main-container{
     display: flex;
@@ -127,4 +102,4 @@ img{
     gap: 5px;
     
     
-}
+} */
