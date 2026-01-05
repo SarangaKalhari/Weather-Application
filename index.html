@@ -39,21 +39,47 @@
     </header>
 
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 ">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
 
         <!-- Main Weather -->
-        <section class="col-span-6 bg-[#111a2e]  p-6 w-80 h-80 rounded-full border border-gray-500/40 ring-1 ring-gray-400/30">
-            <p class="text-5xl font-bold mt-4 flex flex-col items-center justify-center">63.8°F</p>
-            <img src="assets//image/vecteezy_3d-weather-icon-day_24825180.png" alt="" class="w-25 h-25 flex flex-col align-content-center">
-            <p class="text-gray-400 mt-2 flex flex-col items-center justify-center">Clear Sky</p>
-            <h1 class="text-xl font-semibold flex flex-col items-center justify-center">Galle , Sri Lanka</h1>
+        <section class="col-span-6 flex justify-center">
 
-            <div class="mt-6 text-sm text-gray-400 flex flex-col items-center justify-center">
-                A bright, sunny day with no clouds in sight.
+            <div class="
+                w-72 h-72 md:w-80 md:h-80
+                rounded-full
+                bg-[#111a2e]
+                border border-gray-500/40
+                ring-1 ring-gray-400/30
+                flex flex-col items-center justify-center
+                text-center
+                p-6
+             ">
+
+                <!-- Temperature -->
+                <p class="text-5xl font-bold">
+                    63.8<span class="text-2xl">°F</span>
+                </p>
+
+                <!-- Icon -->
+                <img src="assets/image/vecteezy_3d-weather-icon-day_24825180.png" alt="Weather Icon"
+                    class="w-16 h-16 my-4">
+
+                <!-- Condition -->
+                <p class="text-gray-400">
+                    Clear Sky
+                </p>
+
+                <!-- Location -->
+                <h1 class="text-lg font-semibold mt-1">
+                    Galle, Sri Lanka
+                </h1>
+
             </div>
+            
         </section>
 
     </div>
+
 
 
     <!-- 
