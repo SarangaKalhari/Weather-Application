@@ -1,6 +1,27 @@
+console.log("Js lodded!")
+
+function callApi(){
+    fetch("http://api.weatherapi.com/v1/current.json?key=59918b66dfa542389d3180337260901&q=galle&aqi=no")
+    .then(responce => responce.json())
+    .then(data => console.log(data))
+}
+
+callApi();
+
+let date = new Date();
+
+formatDate = {
+    "weekday" : `long`,
+    "month" : `long`,
+    "year" : `numeric`,
+    "day" : `numeric`
+}
+
+let currentDate = date.toLocaleDateString("en-US", formatDate);
+
+console.log(currentDate);
 
 
-// console.log("Hello");
 
 
 // let searchCity=document.getElementById("txtSearch");
