@@ -46,11 +46,11 @@
         <section class="lg:col-span-3 flex justify-center lg:justify-start">
             <div class="
                 w-80 h-80 sm:w-72 sm:h-72
-                lg:w-80 lg:h-80
+                lg:w-90 lg:h-90
                 rounded-full
                 bg-[#111a2e]
                 border border-gray-500/40
-                ring-1 ring-gray-400/30
+                ring-3 ring-gray-400/30
                 flex flex-col items-center 
                 text-center
                 p-6
@@ -66,170 +66,230 @@
             </div>
         </section>
 
+        <section class="lg:col-span-3 grid grid-cols-1 text-gray-400 text-center  gap-4">
+
+            <div>
+                <p class="text-2xl font-bold item-center" id="date">Date</p>
+            </div>
+
+
+            <!-- Sun & Moon Info Bar -->
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-2 gap-4 text-sm text-gray-300 text-center">
+
+                <!-- Sunrise -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/sunrise.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Sunrise</p>
+                    <p class="font-semibold text-white">06:12 AM</p>
+                </div>
+
+                <!-- Sunset -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/sunset.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Sunset</p>
+                    <p class="font-semibold text-white">06:24 PM</p>
+                </div>
+
+                <!-- Moonrise -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/moonrise.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Moonrise</p>
+                    <p class="font-semibold text-white">07:10 PM</p>
+                </div>
+
+                <!-- Moonset  -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/moonset.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Moonset</p>
+                    <p class="font-semibold text-white">06:05 AM</p>
+                </div>
+
+            </div>
+
+
+
+        </section>
+
         <!-- center stats 2*2 -->
 
-        <section class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <section
+            class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4 flex flex-col text-center justify-content-center ">
 
             <!-- Card -->
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">UV Index</p>
+                <p class="text-xl text-gray-400">UV Index</p>
                 <p class="text-3xl font-bold" id="uv_index">0</p>
-                <p class="text-xs text-gray-500" id="uv_status">Low</p>
+                <p class="text-xl text-gray-500" id="uv_status">Low</p>
             </div>
 
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Pressure</p>
+                <p class="text-xl text-gray-400">Pressure</p>
                 <p class="text-3xl font-bold" id="pressure">1010</p>
-                <p class="text-xs text-gray-500">mbar</p>
+                <p class="text-xl text-gray-500">mbar</p>
             </div>
 
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Air Quality</p>
+                <p class="text-xl text-gray-400">Air Quality</p>
                 <p class="text-3xl font-bold" id="cloud">57</p>
-                <p class="text-xs text-gray-500" id="text_cloud">Moderate</p>
+                <p class="text-xl text-gray-500" id="text_cloud">Moderate</p>
             </div>
 
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Humidity</p>
+                <p class="text-xl text-gray-400">Humidity</p>
                 <p class="text-3xl font-bold" id="humidity_per">78%</p>
-                <p class="text-xs text-gray-500" id="humidity_text">Normal</p>
+                <p class="text-xl text-gray-500" id="humidity_text">Normal</p>
             </div>
 
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Wind Speed</p>
+                <p class="text-xl text-gray-400">Wind Speed</p>
                 <p class="text-3xl font-bold" id="wind_speed">57</p>
-                <p class="text-xs text-gray-500">Moderate</p>
+                <p class="text-xl text-gray-500">Moderate</p>
             </div>
 
             <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">feel like</p>
+                <p class="text-xl text-gray-400">feel like</p>
                 <p class="text-3xl font-bold" id="feel_like">78%</p>
-                
+
             </div>
         </section>
 
-        <!-- weekly forecast -->
-        <section class="lg:col-span-3 bg-[#111a2e] rounded-2xl p-4">
-            <h2 class="text-lg font-semibold mb-4">Weekly Forecast</h2>
-
-            <div class="space-y-4 text-sm text-gray-300">
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Fri · 13 Jun</span>
-                    <span>🌤 68° / 59°</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Sat · 14 Jun</span>
-                    <span>🌫 71° / 57°</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Sat · 14 Jun</span>
-                    <span>🌫 71° / 57°</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Sat · 14 Jun</span>
-                    <span>🌫 71° / 57°</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Sat · 14 Jun</span>
-                    <span>🌫 71° / 57°</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-600/30 pb-2">
-                    <span>Sat · 14 Jun</span>
-                    <span>🌫 71° / 57°</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Sun · 15 Jun</span>
-                    <span>☀ 76° / 64°</span>
-                </div>
-            </div>
-        </section>
 
 
 
     </div>
 
 
+    <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-6 p-4 gap-4 text-center">
+
+        <!-- Card -->
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400 ">UV Index</p>
+            <p class="text-3xl font-bold">0</p>
+            <p class="text-xl text-gray-500">Low</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Pressure</p>
+            <p class="text-3xl font-bold">1010</p>
+            <p class="text-xl text-gray-500">mbar</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Air Quality</p>
+            <p class="text-3xl font-bold">57</p>
+            <p class="text-xl text-gray-500">Moderate</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Humidity</p>
+            <p class="text-3xl font-bold">78%</p>
+            <p class="text-xl text-gray-500">Normal</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Air Quality</p>
+            <p class="text-3xl font-bold">57</p>
+            <p class="text-xl text-gray-500">Moderate</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Humidity</p>
+            <p class="text-3xl font-bold">78%</p>
+            <p class="text-xl text-gray-500">Normal</p>
+        </div>
+    </section>
+
+
     <!-- Hourly Forecast -->
-    <section class="bg-[#111a2e] rounded-2xl p-4">
+    <section class="bg-[#111a2e] rounded-2xl p-4 m-4 ">
 
-        <h2 class="text-lg font-semibold mb-4">Hourly Forecast</h2>
+        <h2 class="text-xl font-semibold mb-4 m-4 ">Hourly Forecast</h2>
 
-        <div class="flex gap-4 overflow-x-auto scrollbar-hide">
+        <div class="flex gap-8 overflow-x-auto scrollbar-hide mb-4 m-4">
 
             <!-- Hour Card -->
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">02 PM</p>
-                <p class="text-2xl my-2">⛅</p>
-                <p class="font-semibold">31°</p>
+                <p class="text-sm text-gray-400" id="hour_time">02 PM</p>
+                <img src="" class=" my-2" id="houe_status">⛅
+                <p class="font-semibold" id="hour_temp">31°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">03 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">03 PM</p>
                 <p class="text-2xl my-2">☁️</p>
                 <p class="font-semibold">32°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">04 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">04 PM</p>
                 <p class="text-2xl my-2">☁️</p>
                 <p class="font-semibold">31°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">05 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">05 PM</p>
                 <p class="text-2xl my-2">🌥</p>
                 <p class="font-semibold">30°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">06 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">06 PM</p>
                 <p class="text-2xl my-2">🌦</p>
                 <p class="font-semibold">29°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">07 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">07 PM</p>
                 <p class="text-2xl my-2">🌦</p>
                 <p class="font-semibold">28°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">08 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">08 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">27°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
             </div>
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
             </div>
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
             </div>
 
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
+                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
             </div>
+
+
+        </div>
+
+
+        <div class="flex gap-8 overflow-x-auto scrollbar-hide mb-2 m-4">
+
+            <!-- Hour Card -->
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
                 <p class="text-sm text-gray-400">09 PM</p>
                 <p class="text-2xl my-2">🌙</p>
                 <p class="font-semibold">26°</p>
+                <p class="text-sm text-gray-400" id="hour_status">cloudy</p>
             </div>
             <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
                 <p class="text-sm text-gray-400">09 PM</p>
@@ -290,228 +350,94 @@
         </div>
     </section>
 
-    <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-6 p-4 gap-4">
+
+    <section class="bg-[#111a2e] rounded-2xl p-4 m-4 ">
+
+        <h2 class="text-xl font-semibold mb-4 m-4 ">Weekly Forecast</h2>
+
+        <div class="flex gap-8 overflow-x-auto scrollbar-hide mb-4 m-4">
 
             <!-- Card -->
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400 ">UV Index</p>
-                <p class="text-3xl font-bold">0</p>
-                <p class="text-xs text-gray-500">Low</p>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Pressure</p>
-                <p class="text-3xl font-bold">1010</p>
-                <p class="text-xs text-gray-500">mbar</p>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Air Quality</p>
-                <p class="text-3xl font-bold">57</p>
-                <p class="text-xs text-gray-500">Moderate</p>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Humidity</p>
-                <p class="text-3xl font-bold">78%</p>
-                <p class="text-xs text-gray-500">Normal</p>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Air Quality</p>
-                <p class="text-3xl font-bold">57</p>
-                <p class="text-xs text-gray-500">Moderate</p>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-            <div class="bg-[#111a2e] rounded-2xl p-4">
-                <p class="text-sm text-gray-400">Humidity</p>
-                <p class="text-3xl font-bold">78%</p>
-                <p class="text-xs text-gray-500">Normal</p>
-            </div>
-        </section>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
 
-    <!-- 
-    <header>
-        <div class="header">
-            <div>
-                <img src="" class="">
-            </div>
-            <div>
-                <h1>Weather Application</h1>
-            </div>
-        </div>
-    </header>
-
-
-    <div class="mb-4">
-        <form id="search-form">
-            <div class="input-group search-bar">
-                <input type="text" id="search-location" class="form-control" placeholder="Enter location..."
-                    aria-label="Location">
-                <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
-    </div>
-
-
-    <div class="main-container">
-
-        <div class="main-display">
-            <div class="date"></div>
-            <div>
-                <img src="/assets/image/cloudy.png" style="height: 120px; width: 120px;" id="">
-
-            </div>
-            <div class="location-name">Galle, Sri Lanka</div>
-            <div class="temperature">26 C/28 C</div>
-
-        </div>
-
-        <div class="main-details">
-            <div class="current-details">
-                <div class="line1">
-                    <div class="card-details" data-aos="flip-left">
-                        <h2>Humidity</h2>
-                        76%
-                    </div>
-
-                    <div class="card-details">
-                        <h2>Visibility</h2>
-                        10 km
-                    </div>
-
-
-                    <div class="card-details">
-                        <h2>Cloud Cover</h2>
-                        44%
-                    </div>
-                </div>
-
-                <div class="line2">
-                    <div class="card-details">
-                        <h2>UV Index</h2>
-                        High
-                    </div>
-
-                    <div class="card-details">
-                        <h2>Pressure</h2>
-                        1011 hPa
-                    </div>
-
-                    <div class="card-details">
-                        <h2>Wind Speed</h2>
-                        12 km/h
-                    </div>
-
-                </div>
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium ">Cloudy</p>
+                <span> 71° / 57°</span>
             </div>
 
-        </div>
+            <div class="min-w-[200px] min-h-[250px] 
+            bg-[#0b1220] rounded-xl p-3 
+            flex flex-col items-center justify-center 
+            text-center">
+                <p class="text-xl text-gray-400 flex flex-col">Friday, january 16</p>
+                <img src="/assets/image/cloudy.png" class="w-20 h-20 my-2 mx-auto">
+                <p class="text-white font-medium">Cloudy</p>
+                <span> 71° / 57°</span>
+            </div>
 
-    </div>
-
-
-    <div class="extra-details">
-        <div class="card-extra">
-            <h2>Wind direction</h2>
-            southwest
-        </div>
-
-        <div class="card-extra">
-            <h2>Dew Point</h2>
-            12 km/h
-        </div>
-
-        <div class="card-extra">
-            <h2>Heat Index</h2>
-            12 km/h
-        </div>
-
-        <div class="card-extra">
-            <h2>Wind Chill</h2>
-            12 km/h
-        </div>
-    </div>
-
-
-
-    <div class="hourly-forecast">
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>00.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>01.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>02.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>03.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>04.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>05.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>06.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>07.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>08.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>09.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>10.00 A.M.</p>
-        </div>
-
-        <div class="hourly">
-            <img src="/assets/image/cloudy.png">
-            <p>11.00 A.M.</p>
-        </div>
-
-        
-    </div>
-
-
-
-    <div class="next-5days">
-        <div>
 
         </div>
+    </section>
 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-
-    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
