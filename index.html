@@ -173,7 +173,7 @@
         <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400 ">Heat Index</p>
             <p class="text-3xl font-bold" id="heat_index">0</p>
-            
+
         </div>
 
         <div class="bg-[#111a2e] rounded-2xl p-4">
@@ -197,7 +197,7 @@
         <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400">Wind Direction</p>
             <p class="text-3xl font-bold" id="wind_direction">57</p>
-            
+
         </div>
 
         <div class="bg-[#111a2e] rounded-2xl p-4">
@@ -211,151 +211,10 @@
     <!-- Hourly Forecast -->
     <section class="bg-[#111a2e] rounded-2xl p-4 m-4 ">
 
-        <h2 class="text-xl font-semibold mb-4 m-4 ">Hourly Forecast</h2>
-
-        <div class="flex gap-8 overflow-x-auto scrollbar-hide mb-4 m-4">
-
-            <!-- Hour Card -->
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">02 PM</p>
-                <img src="" class=" my-2" id="houe_status">⛅
-                <p class="font-semibold" id="hour_temp">31°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">03 PM</p>
-                <p class="text-2xl my-2">☁️</p>
-                <p class="font-semibold">32°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">04 PM</p>
-                <p class="text-2xl my-2">☁️</p>
-                <p class="font-semibold">31°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">05 PM</p>
-                <p class="text-2xl my-2">🌥</p>
-                <p class="font-semibold">30°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">06 PM</p>
-                <p class="text-2xl my-2">🌦</p>
-                <p class="font-semibold">29°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">07 PM</p>
-                <p class="text-2xl my-2">🌦</p>
-                <p class="font-semibold">28°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">08 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">27°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400" id="hour_time">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-
-
+        <div id="hourly_container" class="flex gap-4 overflow-x-auto scrollbar-hide">
         </div>
 
 
-        <div class="flex gap-8 overflow-x-auto scrollbar-hide mb-2 m-4">
-
-            <!-- Hour Card -->
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-                <p class="text-sm text-gray-400" id="hour_status">cloudy</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-            <div class="min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center">
-                <p class="text-sm text-gray-400">09 PM</p>
-                <p class="text-2xl my-2">🌙</p>
-                <p class="font-semibold">26°</p>
-            </div>
-
-        </div>
     </section>
 
 
