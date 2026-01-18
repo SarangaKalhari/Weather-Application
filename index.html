@@ -57,8 +57,9 @@
             ">
 
                 <!-- Temperature -->
-                <p class="text-4xl font-bold" id="temp_id">
-                    63.8<span class="text-2xl">°C</span>
+                <p class="text-6xl font-bold">
+                    <span id="temp_id">63.8</span>
+                    <span class="text-5xl">°C</span>
                 </p>
 
                 <!-- Weather Icon -->
@@ -222,10 +223,16 @@
 
         <h2 class="text-xl font-semibold mb-4 m-4 ">Weekly Forecast</h2>
 
-        <div class="flex gap-6 overflow-x-auto scrollbar-hide mb-4 m-4">
+        <div id="weekly_forecast" class="flex gap-4 overflow-x-auto scrollbar-hide"></div>
+
+            
+            </div>
+
+             
+    </section>
 
             <!-- Card -->
-            <div class="min-w-[200px] min-h-[250px] 
+            <!-- <div class="min-w-[200px] min-h-[250px] 
             bg-[#0b1220] rounded-xl p-3 
             flex flex-col items-center justify-center 
             text-center">
@@ -300,10 +307,9 @@
                 <p class="text-white font-medium">Cloudy</p>
                 <span> 71° / 57°</span>
             </div>
+ -->
 
-
-        </div>
-    </section>
+       
 
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

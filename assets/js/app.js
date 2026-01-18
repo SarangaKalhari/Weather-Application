@@ -1,7 +1,7 @@
 console.log("Js lodded!")
 
 function callApi() {
-    fetch("http://api.weatherapi.com/v1/forecast.json?key=59918b66dfa542389d3180337260901&q=panadura&days=1&aqi=no&alerts=no")
+    fetch("http://api.weatherapi.com/v1/forecast.json?key=4b08e55e58a345ee98c193641261801&q=Panadura&days=7&aqi=no&alerts=no")
         .then(responce => responce.json())
         .then(data => {
             // console.log(data)
@@ -9,6 +9,7 @@ function callApi() {
             setCurrentDetails(data);
             // console.log(data.forecast.forecastday[0]);
             setHourlyForecast(data.forecast.forecastday);
+            setWeeklyForecast(data.forecast);
 
             // let forecast=data.forecast.forecastday[0].hour;
             // console.log(forecast)
@@ -17,6 +18,20 @@ function callApi() {
 }
 
 callApi();
+
+
+let date = new Date();
+
+formatDate = {
+    "weekday": `long`,
+    "month": `long`,
+    "year": `numeric`,
+    "day": `numeric`
+}
+
+let currentDate = date.toLocaleDateString("en-US", formatDate);
+
+console.log(currentDate);
 
 function setCurrentDetails(currentDetails) {
     let temp = document.getElementById("temp_id");
@@ -61,7 +76,7 @@ function setCurrentDetails(currentDetails) {
 function setHourlyForecast(forecast) {
 
     const container = document.getElementById("hourly_container");
-  container.innerHTML = ""; // clear old cards
+    container.innerHTML = ""; // clear old cards
 
 
     const hours = forecast[0].hour;
@@ -92,19 +107,56 @@ function setHourlyForecast(forecast) {
 }
 
 
+function setWeeklyForecast(weekly_forecast) {
+  const weeklyContainer = document.getElementById("weekly_forecast");
+  weeklyContainer.innerHTML = ""; // clear old cards
 
-let date = new Date();
+  weekly_forecast.forecastday.forEach(day => {
+    const card= document.createElement("div");
+    card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-lg hover:scale-105 transition-transform";
 
-formatDate = {
-    "weekday": `long`,
-    "month": `long`,
-    "year": `numeric`,
-    "day": `numeric`
+    card.innerHTML = `
+      <p class="text-xl text-gray-400 mb-2">${day.date}</p>
+      <img src="https:${day.day.condition.icon}" class="w-20 h-20 my-3 mx-auto" alt="${day.day.condition.text}">
+      <p class="text-white font-medium mb-1">${day.day.condition.text}</p>
+      <span class="text-gray-300">
+        ${day.day.maxtemp_c}° / ${day.day.mintemp_c}°
+      </span>
+    `;
+
+    weeklyContainer.appendChild(card);
+  });
 }
 
-let currentDate = date.toLocaleDateString("en-US", formatDate);
 
-console.log(currentDate);
+//   const weeklyContainer = document.getElementById("weekly_forecast");
+//   weeklyContainer.innerHTML = "";
+
+//   const weeklyData = weekly_forecast.forecastday;
+
+//   weeklyData.forEach(date => {
+
+//     const card = document.createElement("div");
+//     card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-3 flex flex-col items-center justify-center text-center";
+
+//     card.innerHTML = `
+//         <p class="text-xl text-gray-400">${date.date}</p>
+//         <img src="${date.day.condition.icon}" class="w-20 h-20 my-3 mx-auto">
+//         <p class="text-white font-medium">${date.day.condition.text}</p>
+//         <span class="text-gray-300">
+//           ${date.day.maxtemp_c}° / ${date.day.mintemp_c}°
+//         </span>
+//     `;
+
+//     weeklyContainer.appendChild(card);
+//   });
+
+
+
+
+
+
+
 
 
 
