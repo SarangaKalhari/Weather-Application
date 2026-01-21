@@ -10,6 +10,7 @@ function callApi() {
             // console.log(data.forecast.forecastday[0]);
             setHourlyForecast(data.forecast.forecastday);
             setWeeklyForecast(data.forecast);
+            // getWeatherIcon(data.forecast)
 
             // let forecast=data.forecast.forecastday[0].hour;
             // console.log(forecast)
@@ -31,7 +32,6 @@ formatDate = {
 
 let currentDate = date.toLocaleDateString("en-US", formatDate);
 
-console.log(currentDate);
 
 function setCurrentDetails(currentDetails) {
     let temp = document.getElementById("temp_id");
@@ -108,14 +108,15 @@ function setHourlyForecast(forecast) {
 
 
 function setWeeklyForecast(weekly_forecast) {
-  const weeklyContainer = document.getElementById("weekly_forecast");
-  weeklyContainer.innerHTML = ""; // clear old cards
+    const weeklyContainer = document.getElementById("weekly_forecast");
+    weeklyContainer.innerHTML = ""; // clear old cards
 
-  weekly_forecast.forecastday.forEach(day => {
-    const card= document.createElement("div");
-    card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-lg hover:scale-105 transition-transform";
+    weekly_forecast.forecastday.forEach(day => {
+        const card = document.createElement("div");
+        card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-lg hover:scale-105 transition-transform";
+        // getWeatherIcon(day.day.condition.icon)
 
-    card.innerHTML = `
+        card.innerHTML = `
       <p class="text-xl text-gray-400 mb-2">${day.date}</p>
       <img src="https:${day.day.condition.icon}" class="w-20 h-20 my-3 mx-auto" alt="${day.day.condition.text}">
       <p class="text-white font-medium mb-1">${day.day.condition.text}</p>
@@ -124,46 +125,8 @@ function setWeeklyForecast(weekly_forecast) {
       </span>
     `;
 
-    weeklyContainer.appendChild(card);
-  });
+        weeklyContainer.appendChild(card);
+    });
 }
-
-
-//   const weeklyContainer = document.getElementById("weekly_forecast");
-//   weeklyContainer.innerHTML = "";
-
-//   const weeklyData = weekly_forecast.forecastday;
-
-//   weeklyData.forEach(date => {
-
-//     const card = document.createElement("div");
-//     card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-3 flex flex-col items-center justify-center text-center";
-
-//     card.innerHTML = `
-//         <p class="text-xl text-gray-400">${date.date}</p>
-//         <img src="${date.day.condition.icon}" class="w-20 h-20 my-3 mx-auto">
-//         <p class="text-white font-medium">${date.day.condition.text}</p>
-//         <span class="text-gray-300">
-//           ${date.day.maxtemp_c}° / ${date.day.mintemp_c}°
-//         </span>
-//     `;
-
-//     weeklyContainer.appendChild(card);
-//   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
