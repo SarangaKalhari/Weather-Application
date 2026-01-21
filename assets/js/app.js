@@ -51,6 +51,8 @@ function setCurrentDetails(currentDetails) {
 
     let pressure = document.getElementById("pressure");
     let airQuality = document.getElementById("cloud");
+    let cloudStatus = document.getElementById("text_cloud");
+
     let humidity = document.getElementById("humidity_per");
     let windSpeed = document.getElementById("wind_speed");
     let feelLike = document.getElementById("feel_like");
@@ -73,6 +75,8 @@ function setCurrentDetails(currentDetails) {
 
     pressure.innerText = currentDetails.current.pressure_mb;
     airQuality.innerText = currentDetails.current.cloud;
+    cloudStatus.innerText = checkAirQuality(currentDetails.current.cloud);
+
     humidity.innerText = currentDetails.current.humidity;
     windSpeed.innerText = currentDetails.current.wind_kph;
     feelLike.innerText = currentDetails.current.feelslike_c;
@@ -169,7 +173,7 @@ searchBtn.addEventListener("click", () => {
 checkUVLevel = (uvIndex) => {
 
     if (uvIndex >= 0 && uvIndex <= 2) {
-        return "LOW";
+        return "Low";
     } else if (uvIndex > 2 && uvIndex < 6) {
         return "Moderate";
     } else if (uvIndex >= 6 && uvIndex < 8) {
@@ -179,4 +183,25 @@ checkUVLevel = (uvIndex) => {
     } else if (uvIndex > 11) {
         return "Extreme";
     }
+}
+
+
+// ------Check Air Quality----
+
+checkAirQuality = (cloud) => {
+
+    if (cloud >= 0 && cloud <= 50) {
+        return "Good";
+    } else if (cloud >= 51 && cloud <= 100) {
+        return "Moderate";
+    } else if (cloud >= 101 && cloud <= 150) {
+        return "Unhealthy for Sensitive Groups";
+    } else if (cloud >= 151 && cloud <= 200) {
+        return "Unhealthy";
+    } else if (cloud >= 201 && cloud <= 300) {
+        return "Very Unhealthy";
+    }else if (cloud>=301){
+        return "Hazardous";
+    }
+
 }
