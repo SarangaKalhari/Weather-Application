@@ -130,3 +130,14 @@ function setWeeklyForecast(weekly_forecast) {
 }
 
 
+searchCity.addEventListener("keypress", (e) => {
+    if(e.key === "Enter"){
+        console.log(searchCity.value);
+    }
+});
+
+searchBtn.addEventListener("click", () => {
+    console.log(searchCity.value);
+});
+
+
