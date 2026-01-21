@@ -1,13 +1,14 @@
 console.log("Js lodded!")
 
-function callApi(city) {
-    fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=4b08e55e58a345ee98c193641261801&q=${city}&days=7&aqi=no&alerts=no`
+let api_key = "4b08e55e58a345ee98c193641261801&q";
+
+async function callApi(city) {
+    await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
     )
         .then(responce => responce.json())
         .then(data => {
-            // console.log(data)
-            // console.log(data.forecast)
+
             setCurrentDetails(data);
             // console.log(data.forecast.forecastday[0]);
             setHourlyForecast(data.forecast.forecastday);
@@ -21,8 +22,7 @@ function callApi(city) {
 }
 
 
-
-
+// -----Calculate Date format-------
 let date = new Date();
 
 formatDate = {
@@ -35,13 +35,20 @@ formatDate = {
 let currentDate = date.toLocaleDateString("en-US", formatDate);
 
 
+// --------Get ID & Set Current Data----------
+
 function setCurrentDetails(currentDetails) {
+
     let temp = document.getElementById("temp_id");
     let mainStatusImage = document.getElementById("weather_icon");
     let current = document.getElementById("current_weather");
     let cityName = document.getElementById("current_location");
+
     let date = document.getElementById("date");
+
     let uv = document.getElementById("uv_index");
+    let uvStatus = document.getElementById("uv_status");
+
     let pressure = document.getElementById("pressure");
     let airQuality = document.getElementById("cloud");
     let humidity = document.getElementById("humidity_per");
@@ -58,9 +65,12 @@ function setCurrentDetails(currentDetails) {
     mainStatusImage.src = currentDetails.current.condition.icon;
     current.innerText = currentDetails.current.condition.text;
     cityName.innerText = currentDetails.location.name + ", " + currentDetails.location.country;
+
     date.innerText = currentDate;
 
     uv.innerText = currentDetails.current.uv;
+    uvStatus.innerText = checkUVLevel(currentDetails.current.uv);
+
     pressure.innerText = currentDetails.current.pressure_mb;
     airQuality.innerText = currentDetails.current.cloud;
     humidity.innerText = currentDetails.current.humidity;
@@ -72,8 +82,11 @@ function setCurrentDetails(currentDetails) {
     precep.innerText = currentDetails.current.precip_mm;
     direction.innerText = currentDetails.current.wind_dir;
     chil.innerText = currentDetails.current.windchill_c;
+
 }
 
+
+// ---------Set Hourly Data 24h---------
 
 function setHourlyForecast(forecast) {
 
@@ -109,6 +122,8 @@ function setHourlyForecast(forecast) {
 }
 
 
+// ---------Set Weekly Data -----------
+
 function setWeeklyForecast(weekly_forecast) {
     const weeklyContainer = document.getElementById("weekly_forecast");
     weeklyContainer.innerHTML = ""; // clear old cards
@@ -132,8 +147,10 @@ function setWeeklyForecast(weekly_forecast) {
 }
 
 
+// ----------Searching Location--------
+
 searchCity.addEventListener("keypress", (e) => {
-    if(e.key === "Enter"){
+    if (e.key === "Enter") {
         let city = searchCity.value;
         console.log(city);
         callApi(city);
@@ -147,3 +164,19 @@ searchBtn.addEventListener("click", () => {
 });
 
 
+// --------Check UV level------
+
+checkUVLevel = (uvIndex) => {
+
+    if (uvIndex >= 0 && uvIndex <= 2) {
+        return "LOW";
+    } else if (uvIndex > 2 && uvIndex < 6) {
+        return "Moderate";
+    } else if (uvIndex >= 6 && uvIndex < 8) {
+        return "High";
+    } else if (uvIndex >= 8 && uvIndex < 11) {
+        return "Very High";
+    } else if (uvIndex > 11) {
+        return "Extreme";
+    }
+}
