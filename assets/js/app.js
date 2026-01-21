@@ -1,7 +1,9 @@
 console.log("Js lodded!")
 
-function callApi() {
-    fetch("http://api.weatherapi.com/v1/forecast.json?key=4b08e55e58a345ee98c193641261801&q=Panadura&days=7&aqi=no&alerts=no")
+function callApi(city) {
+    fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=4b08e55e58a345ee98c193641261801&q=${city}&days=7&aqi=no&alerts=no`
+    )
         .then(responce => responce.json())
         .then(data => {
             // console.log(data)
@@ -18,7 +20,7 @@ function callApi() {
         })
 }
 
-callApi();
+
 
 
 let date = new Date();
@@ -132,12 +134,16 @@ function setWeeklyForecast(weekly_forecast) {
 
 searchCity.addEventListener("keypress", (e) => {
     if(e.key === "Enter"){
-        console.log(searchCity.value);
+        let city = searchCity.value;
+        console.log(city);
+        callApi(city);
     }
 });
 
 searchBtn.addEventListener("click", () => {
-    console.log(searchCity.value);
+    let city = searchCity.value;
+    console.log(city);
+    callApi(city);
 });
 
 
