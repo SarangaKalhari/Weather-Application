@@ -54,11 +54,15 @@ function setCurrentDetails(currentDetails) {
     let cloudStatus = document.getElementById("text_cloud");
 
     let humidity = document.getElementById("humidity_per");
+    let humidityStatus = document.getElementById("humidity_text");
+
     let windSpeed = document.getElementById("wind_speed");
     let feelLike = document.getElementById("feel_like");
     let heat = document.getElementById("heat_index");
     let dew = document.getElementById("dew_point");
     let vis = document.getElementById("visibility");
+    let visStatus = document.getElementById("visibility_status");
+
     let precep = document.getElementById("precep");
     let direction = document.getElementById("wind_direction");
     let chil = document.getElementById("wind_chil");
@@ -78,11 +82,16 @@ function setCurrentDetails(currentDetails) {
     cloudStatus.innerText = checkAirQuality(currentDetails.current.cloud);
 
     humidity.innerText = currentDetails.current.humidity;
+    humidityStatus.innerText = checkHumidityLevel(currentDetails.current.humidity);
+
     windSpeed.innerText = currentDetails.current.wind_kph;
     feelLike.innerText = currentDetails.current.feelslike_c;
     heat.innerText = currentDetails.current.heatindex_c;
     dew.innerText = currentDetails.current.dewpoint_c;
-    vis.innerText = currentDetails.current.vis_km;
+
+    vis.innerText = currentDetails.current.vis_km+" "+"km";
+    visStatus.innerText = checkVisibility(currentDetails.current.vis_km);
+
     precep.innerText = currentDetails.current.precip_mm;
     direction.innerText = currentDetails.current.wind_dir;
     chil.innerText = currentDetails.current.windchill_c;
@@ -204,4 +213,42 @@ checkAirQuality = (cloud) => {
         return "Hazardous";
     }
 
+}
+
+
+// ------ Check humidity levels----
+
+checkHumidityLevel = (humidity) => {
+
+    if (humidity <= 30) {
+        return "Dry";
+    } else if (humidity >= 31 && humidity <= 50) {
+        return "Normal";
+    } else if (humidity >= 51 && humidity <= 70) {
+        return "Humid";
+    } else if (humidity >= 71 && humidity <= 85) {
+        return "Very Humid";
+    } else if (humidity >= 86) {
+        return "Extreme";
+    }      
+  
+}
+
+
+// ------Check Visibility Status --------
+
+checkVisibility = (visibility) => {
+
+    if (visibility <= 1) {
+        return "Very Poor";
+    } else if (visibility > 1 && visibility <= 3) {
+        return "Poor";
+    } else if (visibility > 3 && visibility <= 6) {
+        return "Moderate";
+    } else if (visibility > 6 && visibility <= 10) {
+        return "Good";
+    } else if (visibility >= 10) {
+        return "Excellent";
+    }
+    
 }
