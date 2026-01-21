@@ -45,6 +45,10 @@ function setCurrentDetails(currentDetails) {
     let cityName = document.getElementById("current_location");
 
     let date = document.getElementById("date");
+    let sunrise = document.getElementById("sunrise");
+    let sunset = document.getElementById("sunset");
+    let moonrise = document.getElementById("moonrise");
+    let moonset = document.getElementById("moonset");
 
     let uv = document.getElementById("uv_index");
     let uvStatus = document.getElementById("uv_status");
@@ -73,6 +77,10 @@ function setCurrentDetails(currentDetails) {
     cityName.innerText = currentDetails.location.name + ", " + currentDetails.location.country;
 
     date.innerText = currentDate;
+    sunrise.innerText = currentDetails.forecast.forecastday[0].astro.sunrise;
+    sunset.innerText = currentDetails.forecast.forecastday[0].astro.sunset;
+    moonrise.innerText = currentDetails.forecast.forecastday[0].astro.moonrise;
+    moonset.innerText = currentDetails.forecast.forecastday[0].astro.moonset;
 
     uv.innerText = currentDetails.current.uv;
     uvStatus.innerText = checkUVLevel(currentDetails.current.uv);
@@ -85,16 +93,16 @@ function setCurrentDetails(currentDetails) {
     humidityStatus.innerText = checkHumidityLevel(currentDetails.current.humidity);
 
     windSpeed.innerText = currentDetails.current.wind_kph;
-    feelLike.innerText = currentDetails.current.feelslike_c;
-    heat.innerText = currentDetails.current.heatindex_c;
-    dew.innerText = currentDetails.current.dewpoint_c;
+    feelLike.innerText = currentDetails.current.feelslike_c+" "+"°C";
+    heat.innerText = currentDetails.current.heatindex_c+" °C";
+    dew.innerText = currentDetails.current.dewpoint_c+" °C";
 
     vis.innerText = currentDetails.current.vis_km+" "+"km";
     visStatus.innerText = checkVisibility(currentDetails.current.vis_km);
 
-    precep.innerText = currentDetails.current.precip_mm;
+    precep.innerText = currentDetails.current.precip_mm+" "+"mm";
     direction.innerText = currentDetails.current.wind_dir;
-    chil.innerText = currentDetails.current.windchill_c;
+    chil.innerText = currentDetails.current.windchill_c+" °C";
 
 }
 
@@ -250,5 +258,5 @@ checkVisibility = (visibility) => {
     } else if (visibility >= 10) {
         return "Excellent";
     }
-    
+
 }

@@ -28,7 +28,7 @@
         <div class="flex items-center space-x-3">
             <input type="text" placeholder="Search city..." class="bg-[#0b1220] text-gray-200 placeholder-gray-500 
              px-4 py-2 rounded-xl outline-none 
-             focus:ring-2 focus:ring-blue-500" id="searchCity"/>
+             focus:ring-2 focus:ring-blue-500" id="searchCity" />
 
             <button class="bg-blue-500 hover:bg-blue-600 
              text-white px-4 py-2 rounded-xl" id="searchBtn">
@@ -172,6 +172,12 @@
 
         <!-- Card -->
         <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Visibility</p>
+            <p class="text-3xl font-bold" id="visibility">57</p>
+            <p class="text-xl text-gray-500" id="visibility_status">Moderate</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400 ">Heat Index</p>
             <p class="text-3xl font-bold" id="heat_index">0</p>
 
@@ -180,19 +186,13 @@
         <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400">Dew Point</p>
             <p class="text-3xl font-bold" id="dew_point">1010</p>
-            <p class="text-xl text-gray-500">C</p>
-        </div>
-
-        <div class="bg-[#111a2e] rounded-2xl p-4">
-            <p class="text-xl text-gray-400">Visibility</p>
-            <p class="text-3xl font-bold" id="visibility">57</p>
-            <p class="text-xl text-gray-500">Moderate</p>
+            <!-- <p class="text-xl text-gray-500">C</p> -->
         </div>
 
         <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400">Precip</p>
             <p class="text-3xl font-bold" id="precep">78%</p>
-            <p class="text-xl text-gray-500">mm</p>
+            <!-- <p class="text-xl text-gray-500">mm</p> -->
         </div>
 
         <div class="bg-[#111a2e] rounded-2xl p-4">
@@ -204,7 +204,7 @@
         <div class="bg-[#111a2e] rounded-2xl p-4">
             <p class="text-xl text-gray-400">Wind Chill</p>
             <p class="text-3xl font-bold" id="wind_chil">78%</p>
-            <p class="text-xl text-gray-500">C</p>
+            <!-- <p class="text-xl text-gray-500">C</p> -->
         </div>
     </section>
 
@@ -227,12 +227,12 @@
 
         <div id="weekly_forecast" class="flex gap-4 overflow-x-auto scrollbar-hide"></div>
 
-            
-            </div>
 
-             
+        </div>
+
+
     </section>
-       
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
