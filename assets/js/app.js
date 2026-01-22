@@ -34,6 +34,38 @@ formatDate = {
 
 let currentDate = date.toLocaleDateString("en-US", formatDate);
 
+// ---------Calculate Time -----------
+let now = new Date();
+
+formatTime = {
+    "hour": `2-digit`,
+    "minute": `2-digit`,
+    "hour12": `false`
+}
+let currentTime = now.toLocaleTimeString("en-US", formatTime);
+console.log(currentTime);
+
+let currentHour =now.getHours();
+console.log(currentHour)
+
+let timeStatus = detectTimeStatus(currentHour);
+
+function detectTimeStatus(currentHour) {
+
+    let timeStatus;
+    if (currentHour >= 6 && currentHour < 18) {
+        timeStatus = "day";
+        console.log(timeStatus);
+
+    }else {
+        timeStatus = "night";
+        console.log(timeStatus);
+
+    }
+    return timeStatus;
+}
+
+
 
 // --------Get ID & Set Current Data----------
 
@@ -93,16 +125,16 @@ function setCurrentDetails(currentDetails) {
     humidityStatus.innerText = checkHumidityLevel(currentDetails.current.humidity);
 
     windSpeed.innerText = currentDetails.current.wind_kph;
-    feelLike.innerText = currentDetails.current.feelslike_c+" "+"°C";
-    heat.innerText = currentDetails.current.heatindex_c+" °C";
-    dew.innerText = currentDetails.current.dewpoint_c+" °C";
+    feelLike.innerText = currentDetails.current.feelslike_c + " " + "°C";
+    heat.innerText = currentDetails.current.heatindex_c + " °C";
+    dew.innerText = currentDetails.current.dewpoint_c + " °C";
 
-    vis.innerText = currentDetails.current.vis_km+" "+"km";
+    vis.innerText = currentDetails.current.vis_km + " " + "km";
     visStatus.innerText = checkVisibility(currentDetails.current.vis_km);
 
-    precep.innerText = currentDetails.current.precip_mm+" "+"mm";
+    precep.innerText = currentDetails.current.precip_mm + " " + "mm";
     direction.innerText = currentDetails.current.wind_dir;
-    chil.innerText = currentDetails.current.windchill_c+" °C";
+    chil.innerText = currentDetails.current.windchill_c + " °C";
 
 }
 
@@ -217,7 +249,7 @@ checkAirQuality = (cloud) => {
         return "Unhealthy";
     } else if (cloud >= 201 && cloud <= 300) {
         return "Very Unhealthy";
-    }else if (cloud>=301){
+    } else if (cloud >= 301) {
         return "Hazardous";
     }
 
@@ -238,8 +270,8 @@ checkHumidityLevel = (humidity) => {
         return "Very Humid";
     } else if (humidity >= 86) {
         return "Extreme";
-    }      
-  
+    }
+
 }
 
 
