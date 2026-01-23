@@ -1,11 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
-<body>
-    
+
+<body class="bg-[#0b1220] min-h-screen text-gray-200">
+
+    <!-- Header PArt -->
+    <header class="bg-[#111a2e] rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+
+        <!-- Left: App / Location -->
+        <div class="flex items-center gap-3">
+            <img src="assets/image/logo.png" class="logo">
+            <div>
+                <h1 class="text-lg font-semibold text-gray-200">
+                    Weather Application
+                </h1>
+            </div>
+        </div>
+
+        <!-- Right: Search -->
+        <div class="flex items-center space-x-3">
+            <input type="text" placeholder="Search city..." class="bg-[#0b1220] text-gray-200 placeholder-gray-500 
+             px-4 py-2 rounded-xl outline-none 
+             focus:ring-2 focus:ring-blue-500" id="searchCity" />
+
+            <button class="bg-blue-500 hover:bg-blue-600 
+             text-white px-4 py-2 rounded-xl" id="searchBtn">
+                Search
+            </button>
+        </div>
+
+    </header>
+
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4">
+
+
+        <!-- Main Weather Area -->
+        <section class="lg:col-span-3 flex justify-center lg:justify-start">
+
+            <div class="
+                w-80 h-80 sm:w-72 sm:h-72 lg:w-90 lg:h-90
+                rounded-full
+                bg-[#111a2e]
+                border border-gray-500/40
+                ring-2 ring-gray-400/30
+                flex flex-col items-center justify-center
+                text-center
+                p-6
+            ">
+
+                <!-- Temperature -->
+                <p class="text-6xl font-bold">
+                    <span id="temp_id">63.8</span>
+                    <span class="text-5xl">°C</span>
+                </p>
+
+                <!-- Weather Icon -->
+                <img src="assets/image/day/cloudy.png" class="w-28 h-28 my-4" id="weather_icon">
+
+                <!-- Weather Text -->
+                <p class="text-gray-400" id="current_weather">Clear Sky</p>
+
+                <!-- Location -->
+                <h1 class="text-lg font-semibold mt-1" id="current_location">
+                    Galle, Sri Lanka
+                </h1>
+
+            </div>
+        </section>
+
+        <section class="lg:col-span-3 grid grid-cols-1 text-gray-400 text-center  gap-4">
+
+            <div>
+                <p class="text-2xl font-bold item-center" id="date">Date</p>
+            </div>
+
+
+            <!-- Sun & Moon Info Bar -->
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-2 gap-4 text-sm text-gray-300 text-center">
+
+                <!-- Sunrise -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/sunrise.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Sunrise</p>
+                    <p class="font-semibold text-white" id="sunrise">06:12 AM</p>
+                </div>
+
+                <!-- Sunset -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/sunset.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Sunset</p>
+                    <p class="font-semibold text-white" id="sunset">06:24 PM</p>
+                </div>
+
+                <!-- Moonrise -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/moonrise.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Moonrise</p>
+                    <p class="font-semibold text-white" id="moonrise">07:10 PM</p>
+                </div>
+
+                <!-- Moonset  -->
+                <div class=" p-3 flex flex-col items-center">
+                    <img src="assets/image/moonset.png" class="w-20 h-20 mb-2">
+                    <p class="text-gray-400">Moonset</p>
+                    <p class="font-semibold text-white" id="moonset">06:05 AM</p>
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+        <!-- center stats 2*2 -->
+
+        <section class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+
+            <!-- Card -->
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">UV Index</p>
+                <p class="text-3xl font-bold" id="uv_index">0</p>
+                <p class="text-xl text-gray-500" id="uv_status">Low</p>
+            </div>
+
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">Pressure</p>
+                <p class="text-3xl font-bold" id="pressure">1010</p>
+                <p class="text-xl text-gray-500">mbar</p>
+            </div>
+
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">Air Quality</p>
+                <p class="text-3xl font-bold" id="cloud">57</p>
+                <p class="text-xl text-gray-500" id="text_cloud">Moderate</p>
+            </div>
+
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">Humidity</p>
+                <p class="text-3xl font-bold" id="humidity_per">78%</p>
+                <p class="text-xl text-gray-500" id="humidity_text">Normal</p>
+            </div>
+
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">Wind Speed</p>
+                <p class="text-3xl font-bold" id="wind_speed">57</p>
+                <p class="text-xl text-gray-500">km/h</p>
+            </div>
+
+            <div class="bg-[#111a2e] rounded-2xl p-4 flex flex-col items-center justify-center">
+                <p class="text-xl text-gray-400">Feels Like</p>
+                <p class="text-3xl font-bold" id="feel_like">26°</p>
+            </div>
+
+        </section>
+
+
+
+
+    </div>
+
+
+    <section class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-6 p-4 gap-4 text-center">
+
+        <!-- Card -->
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Visibility</p>
+            <p class="text-3xl font-bold" id="visibility">57</p>
+            <p class="text-xl text-gray-500" id="visibility_status">Moderate</p>
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400 ">Heat Index</p>
+            <p class="text-3xl font-bold" id="heat_index">0</p>
+
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Dew Point</p>
+            <p class="text-3xl font-bold" id="dew_point">1010</p>
+            <!-- <p class="text-xl text-gray-500">C</p> -->
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Precip</p>
+            <p class="text-3xl font-bold" id="precep">78%</p>
+            <!-- <p class="text-xl text-gray-500">mm</p> -->
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Wind Direction</p>
+            <p class="text-3xl font-bold" id="wind_direction">57</p>
+
+        </div>
+
+        <div class="bg-[#111a2e] rounded-2xl p-4">
+            <p class="text-xl text-gray-400">Wind Chill</p>
+            <p class="text-3xl font-bold" id="wind_chil">78%</p>
+            <!-- <p class="text-xl text-gray-500">C</p> -->
+        </div>
+    </section>
+
+
+    <!-- Hourly Forecast -->
+    <section class="bg-[#111a2e] rounded-2xl p-4 m-4 ">
+
+        <h2 class="text-xl font-semibold mb-4 m-4 text-[#ffcf40]">Hourly Forecast</h2>
+
+        <div id="hourly_container" class="flex gap-4 overflow-x-auto scrollbar-hide">
+        </div>
+
+
+    </section>
+
+
+    <section class="bg-[#111a2e] rounded-2xl p-4 m-4 ">
+
+        <h2 class="text-xl font-semibold mb-4 m-4 text-[#ffcf40]">Weekly Forecast</h2>
+
+        <div id="weekly_forecast" class="flex gap-4 overflow-x-auto scrollbar-hide"></div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="/assets/js/app.js"></script>
+
 </body>
+
 </html>
