@@ -262,7 +262,7 @@ function setWeeklyForecast(weekly_forecast) {
 
 async function callApi(city) {
     await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
+        `https://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
     )
         .then(responce => responce.json())
         .then(data => {
@@ -281,12 +281,14 @@ searchCity.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         let city = searchCity.value;
         callApi(city);
+        console.log(city);
     }
 });
 
 searchBtn.addEventListener("click", () => {
     let city = searchCity.value;
     callApi(city);
+    console.log(city);
 });
 
 
