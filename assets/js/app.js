@@ -10,33 +10,26 @@ async function callApi(city) {
         .then(data => {
 
             setCurrentDetails(data);
-            // console.log(data.forecast.forecastday[0]);
             setHourlyForecast(data.forecast.forecastday);
             setWeeklyForecast(data.forecast);
-            // getWeatherIcon(data.forecast)
 
-            // let forecast=data.forecast.forecastday[0].hour;
-            // console.log(forecast)
-            // setHourlyForecast(forecast);
         })
 }
 
 
 // -----Calculate Date format-------
 let date = new Date();
-
 formatDate = {
     "weekday": `long`,
     "month": `long`,
     "year": `numeric`,
     "day": `numeric`
 }
-
 let currentDate = date.toLocaleDateString("en-US", formatDate);
+
 
 // ---------Calculate Time -----------
 let now = new Date();
-
 formatTime = {
     "hour": `2-digit`,
     "minute": `2-digit`,
@@ -45,7 +38,7 @@ formatTime = {
 let currentTime = now.toLocaleTimeString("en-US", formatTime);
 console.log(currentTime);
 
-let currentHour =now.getHours();
+let currentHour = now.getHours();
 console.log(currentHour)
 
 let timeStatus = detectTimeStatus(currentHour);
@@ -57,7 +50,7 @@ function detectTimeStatus(currentHour) {
         timeStatus = "day";
         console.log(timeStatus);
 
-    }else {
+    } else {
         timeStatus = "night";
         console.log(timeStatus);
 
@@ -66,14 +59,13 @@ function detectTimeStatus(currentHour) {
 }
 
 
-
 // --------Get ID & Set Current Data----------
 
 function setCurrentDetails(currentDetails) {
 
     let temp = document.getElementById("temp_id");
     let mainStatusImage = document.getElementById("weather_icon");
-    
+
     let current = document.getElementById("current_weather");
     let cityName = document.getElementById("current_location");
 
@@ -107,7 +99,7 @@ function setCurrentDetails(currentDetails) {
     temp.innerText = currentDetails.current.temp_c;
     mainStatusImage.src = setWeatherImage(timeStatus, currentDetails.current.condition.text);
     current.innerText = currentDetails.current.condition.text;
-    
+
     cityName.innerText = currentDetails.location.name + ", " + currentDetails.location.country;
 
     date.innerText = currentDate;
@@ -148,10 +140,20 @@ function setHourlyForecast(forecast) {
     const container = document.getElementById("hourly_container");
     container.innerHTML = ""; // clear old cards
 
+    // ---merge today & tomorrow hourly data in array----
+    let todayHours = forecast[0].hour;
+    let tomorrowHours = forecast[1].hour;
+    let hourlyDataArray = [...todayHours, ...tomorrowHours];
+    console.log(hourlyDataArray);
 
-    let hours = forecast[0].hour;
+    // console.log(forecast)
+    // console.log(tomorrowHours)
+    let nowHour = currentHour;
 
-    hours.forEach(hour => {
+    let nextHours = hourlyDataArray.slice(nowHour, nowHour + 24);
+    console.log(nextHours)
+
+    nextHours.forEach(hour => {
 
         // Format time → "02 PM"
         let time = new Date(hour.time).toLocaleTimeString([], {
@@ -161,11 +163,11 @@ function setHourlyForecast(forecast) {
         });
         // console.log(time.getHours());
 
-         let dateObj = new Date(hour.time);
+        let dateObj = new Date(hour.time);
 
         // Detect day/night
         let timeStat = detectTimeStatus(dateObj.getHours());
-        console.log(timeStat);
+        // console.log(timeStat);
 
         // Create card
         const card = document.createElement("div");
@@ -212,7 +214,6 @@ function setWeeklyForecast(weekly_forecast) {
 
 
 // ----------Searching Location--------
-
 searchCity.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         let city = searchCity.value;
@@ -229,7 +230,6 @@ searchBtn.addEventListener("click", () => {
 
 
 // --------Check UV level------
-
 checkUVLevel = (uvIndex) => {
 
     if (uvIndex >= 0 && uvIndex <= 2) {
@@ -247,7 +247,6 @@ checkUVLevel = (uvIndex) => {
 
 
 // ------Check Air Quality----
-
 checkAirQuality = (cloud) => {
 
     if (cloud >= 0 && cloud <= 50) {
@@ -304,154 +303,155 @@ checkVisibility = (visibility) => {
 
 }
 
+// -------Set Weather Images--------
+function setWeatherImage(timeStatus, weatherStatus) {
 
-function setWeatherImage(timeStatus, weatherStatus){
     let weatherText = weatherStatus.trim();
     let weather = weatherText.toLowerCase();
-    
 
-    if (timeStatus === "day" && weather === "sunny"){
-       return "assets/image/day/sunny.png";
+    // -------set day images------
+    if (timeStatus === "day" && weather === "sunny") {
+        return "assets/image/day/sunny.png";
 
-    }else if (timeStatus === "day" && weather === "partly cloudy"){
+    } else if (timeStatus === "day" && weather === "partly cloudy") {
         return "assets/image/day/partly cloud.png";
 
-    }else if (timeStatus === "day" && weather === "cloudy" || timeStatus === "day" && weather === "clear"){
+    } else if (timeStatus === "day" && weather === "cloudy" || timeStatus === "day" && weather === "clear") {
         return "assets/image/day/cloudy.png";
 
-    }else if (timeStatus === "day" && weather === "overcast"){
+    } else if (timeStatus === "day" && weather === "overcast") {
         return "assets/image/day/overcast.png";
 
-    }else if (timeStatus === "day" && weather === "mist"){
+    } else if (timeStatus === "day" && weather === "mist") {
         return "assets/image/day/mist.png";
 
-    }else if (timeStatus === "day" && weather === "patchy rain nearby"){
+    } else if (timeStatus === "day" && weather === "patchy rain nearby") {
         return "assets/image/day/Patchy rain possible.png";
 
-    }else if (timeStatus === "day" && weather === "patchy snow possible"){
+    } else if (timeStatus === "day" && weather === "patchy snow possible") {
         return "assets/image/day/patchy snow possible.png";
 
-    }else if (timeStatus === "day" && weather === "patchy sleet possible"){
+    } else if (timeStatus === "day" && weather === "patchy sleet possible") {
         return "assets/image/day/patchy sleet possible.png";
 
-    }else if (timeStatus === "day" && weather === "patchy freezing drizzle possible"){
+    } else if (timeStatus === "day" && weather === "patchy freezing drizzle possible") {
         return "assets/image/day/drizzless.png";
 
-    }else if (timeStatus === "day" && weather === "thundery outbreaks possible"){
+    } else if (timeStatus === "day" && weather === "thundery outbreaks possible") {
         return "assets/image/day/thunder.png";
 
-    }else if (timeStatus === "day" && weather === "blowing snow"){
+    } else if (timeStatus === "day" && weather === "blowing snow") {
         return "assets/image/day/blooming snow.png";
 
-    }else if (timeStatus === "day" && weather === "blizzard"){
+    } else if (timeStatus === "day" && weather === "blizzard") {
         return "assets/image/day/Blizzard.png";
 
-    }else if (timeStatus === "day" && weather === "fog"){
+    } else if (timeStatus === "day" && weather === "fog") {
         return "assets/image/day/mist.png";
 
-    }else if (timeStatus === "day" && weather === "freezing fog"){
+    } else if (timeStatus === "day" && weather === "freezing fog") {
         return "assets/image/day/mist.png";
 
-    }else if (timeStatus === "day" && weather === "patchy light drizzle"){
+    } else if (timeStatus === "day" && weather === "patchy light drizzle") {
         return "assets/image/day/drizzless.png";
 
-    }else if (timeStatus === "day" && weather === "light drizzle"){
+    } else if (timeStatus === "day" && weather === "light drizzle") {
         return "assets/image/day/freeze drizzle.png";
 
-    }else if (timeStatus === "day" && weather === "freezing drizzle"){
+    } else if (timeStatus === "day" && weather === "freezing drizzle") {
         return "assets/image/day/freeze drizzle.png";
 
-    }else if (timeStatus === "day" && weather === "heavy freezing drizzle"){
+    } else if (timeStatus === "day" && weather === "heavy freezing drizzle") {
         return "assets/image/day/freeze drizzle.png";
 
-    }else if (timeStatus === "day" && weather === "patchy light rain"){
+    } else if (timeStatus === "day" && weather === "patchy light rain") {
         return "assets/image/day/light rain.png";
 
-    }else if (timeStatus === "day" && weather === "light rain"){
+    } else if (timeStatus === "day" && weather === "light rain") {
         return "assets/image/day/light rain.png";
 
-    }else if (timeStatus === "day" && weather === "moderate rain at times"){
+    } else if (timeStatus === "day" && weather === "moderate rain at times") {
         return "assets/image/day/moderate rain.png";
 
-    }else if (timeStatus === "day" && weather === "moderate rain"){
+    } else if (timeStatus === "day" && weather === "moderate rain") {
         return "assets/image/day/moderate rain.png";
 
-    }else if (timeStatus === "day" && weather === "heavy rain at times"){
+    } else if (timeStatus === "day" && weather === "heavy rain at times") {
         return "assets/image/day/heavy rain.png";
 
-    }else if (timeStatus === "day" && weather === "heavy rain"){
+    } else if (timeStatus === "day" && weather === "heavy rain") {
         return "assets/image/day/heavy rain.png";
 
-    }else if (timeStatus === "day" && weather === "light freezing rain"){
+    } else if (timeStatus === "day" && weather === "light freezing rain") {
         return "assets/image/day/light rain.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy freezing rain"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy freezing rain") {
         return "assets/image/day/heavy rain.png";
 
-    }else if (timeStatus === "day" && weather === "light sleet"){
+    } else if (timeStatus === "day" && weather === "light sleet") {
         return "assets/image/day/patchy sleet possible.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy sleet"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy sleet") {
         return "assets/image/day/sleet shower.png";
 
-    }else if (timeStatus === "day" && weather === "patchy light snow"){
+    } else if (timeStatus === "day" && weather === "patchy light snow") {
         return "assets/image/day/patchy snow possible.png";
 
-    }else if (timeStatus === "day" && weather === "light snow"){
+    } else if (timeStatus === "day" && weather === "light snow") {
         return "assets/image/day/patchy snow possible.png";
 
-    }else if (timeStatus === "day" && weather === "patchy moderate snow"){
+    } else if (timeStatus === "day" && weather === "patchy moderate snow") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "moderate snow"){
+    } else if (timeStatus === "day" && weather === "moderate snow") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "patchy heavy snow"){
+    } else if (timeStatus === "day" && weather === "patchy heavy snow") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "heavy snow"){
+    } else if (timeStatus === "day" && weather === "heavy snow") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "ice pellets"){
+    } else if (timeStatus === "day" && weather === "ice pellets") {
         return "assets/image/day/ice pleete.png";
 
-    }else if (timeStatus === "day" && weather === "light rain shower"){
+    } else if (timeStatus === "day" && weather === "light rain shower") {
         return "assets/image/day/light rain.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy rain shower"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy rain shower") {
         return "assets/image/day/heavy rain.png";
 
-    }else if (timeStatus === "day" && weather === "torrential rain shower"){
+    } else if (timeStatus === "day" && weather === "torrential rain shower") {
         return "assets/image/day/moderate rain.png";
 
-    }else if (timeStatus === "day" && weather === "light sleet showers"){
+    } else if (timeStatus === "day" && weather === "light sleet showers") {
         return "assets/image/day/sleet shower.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy sleet showers"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy sleet showers") {
         return "assets/image/day/sleet shower.png";
 
-    }else if (timeStatus === "day" && weather === "light snow showers"){
+    } else if (timeStatus === "day" && weather === "light snow showers") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy snow showers"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy snow showers") {
         return "assets/image/day/modarate & heavy snow.png";
 
-    }else if (timeStatus === "day" && weather === "light showers of ice pellets"){
+    } else if (timeStatus === "day" && weather === "light showers of ice pellets") {
         return "assets/image/day/ice pleete.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy showers of ice pellets"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy showers of ice pellets") {
         return "assets/image/day/ice pleete.png";
 
-    }else if (timeStatus === "day" && weather === "patchy light rain with thunder"){
+    } else if (timeStatus === "day" && weather === "patchy light rain with thunder") {
         return "assets/image/day/light rain with thunder.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy rain with thunder"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy rain with thunder") {
         return "assets/image/day/heavy rain with thunder.png";
 
-    }else if (timeStatus === "day" && weather === "patchy light snow with thunder"){
+    } else if (timeStatus === "day" && weather === "patchy light snow with thunder") {
         return "assets/image/day/light snow with thunder.png";
 
-    }else if (timeStatus === "day" && weather === "moderate or heavy snow with thunder"){
+    } else if (timeStatus === "day" && weather === "moderate or heavy snow with thunder") {
         return "assets/image/day/light snow with thunder.png";
     }
 
@@ -459,148 +459,148 @@ function setWeatherImage(timeStatus, weatherStatus){
 
     // ----set night images-------
 
-    if (timeStatus === "night" && weather === "clear"){
-       return "assets/image/night/moon.png";
+    if (timeStatus === "night" && weather === "clear") {
+        return "assets/image/night/moon.png";
 
-    }else if (timeStatus === "night" && weather === "partly cloudy"){
+    } else if (timeStatus === "night" && weather === "partly cloudy") {
         return "assets/image/night/partly cloud.png";
 
-    }else if (timeStatus === "night" && weather === "cloudy"){
+    } else if (timeStatus === "night" && weather === "cloudy") {
         return "assets/image/night/cloudy.png";
 
-    }else if (timeStatus === "night" && weather === "overcast"){
+    } else if (timeStatus === "night" && weather === "overcast") {
         return "assets/image/night/overcast.png";
 
-    }else if (timeStatus === "night" && weather === "mist"){
+    } else if (timeStatus === "night" && weather === "mist") {
         return "assets/image/night/mist.png";
 
-    }else if (timeStatus === "night" && weather === "patchy rain nearby"){
+    } else if (timeStatus === "night" && weather === "patchy rain nearby") {
         return "assets/image/night/patchy rain possible.png";
 
-    }else if (timeStatus === "night" && weather === "patchy snow possible"){
+    } else if (timeStatus === "night" && weather === "patchy snow possible") {
         return "assets/image/night/patchy snow possible.png";
 
-    }else if (timeStatus === "night" && weather === "patchy sleet possible"){
+    } else if (timeStatus === "night" && weather === "patchy sleet possible") {
         return "assets/image/night/patchy sleet possible.png";
 
-    }else if (timeStatus === "night" && weather === "patchy freezing drizzle possible"){
+    } else if (timeStatus === "night" && weather === "patchy freezing drizzle possible") {
         return "assets/image/night/light drezzless.png";
 
-    }else if (timeStatus === "night" && weather === "thundery outbreaks possible"){
+    } else if (timeStatus === "night" && weather === "thundery outbreaks possible") {
         return "assets/image/night/thunder.png";
 
-    }else if (timeStatus === "night" && weather === "blowing snow"){
+    } else if (timeStatus === "night" && weather === "blowing snow") {
         return "assets/image/night/blooming snow1.png";
 
-    }else if (timeStatus === "night" && weather === "blizzard"){
+    } else if (timeStatus === "night" && weather === "blizzard") {
         return "assets/image/night/Blizzard.png";
 
-    }else if (timeStatus === "night" && weather === "fog"){
+    } else if (timeStatus === "night" && weather === "fog") {
         return "assets/image/night/mist.png";
 
-    }else if (timeStatus === "night" && weather === "freezing fog"){
+    } else if (timeStatus === "night" && weather === "freezing fog") {
         return "assets/image/night/mist.png";
 
-    }else if (timeStatus === "night" && weather === "patchy light drizzle"){
+    } else if (timeStatus === "night" && weather === "patchy light drizzle") {
         return "assets/image/night/light drezzless.png";
 
-    }else if (timeStatus === "night" && weather === "light drizzle"){
+    } else if (timeStatus === "night" && weather === "light drizzle") {
         return "assets/image/night/light drezzless.png";
 
-    }else if (timeStatus === "night" && weather === "freezing drizzle"){
+    } else if (timeStatus === "night" && weather === "freezing drizzle") {
         return "assets/image/night/freeze dreezzle.png";
 
-    }else if (timeStatus === "night" && weather === "heavy freezing drizzle"){
+    } else if (timeStatus === "night" && weather === "heavy freezing drizzle") {
         return "assets/image/night/freeze dreezzle.png";
 
-    }else if (timeStatus === "night" && weather === "patchy light rain"){
+    } else if (timeStatus === "night" && weather === "patchy light rain") {
         return "assets/image/night/light rain.png";
 
-    }else if (timeStatus === "night" && weather === "light rain"){
+    } else if (timeStatus === "night" && weather === "light rain") {
         return "assets/image/night/light rain.png";
 
-    }else if (timeStatus === "night" && weather === "moderate rain at times"){
+    } else if (timeStatus === "night" && weather === "moderate rain at times") {
         return "assets/image/night/modarate rain.png";
 
-    }else if (timeStatus === "night" && weather === "moderate rain"){
+    } else if (timeStatus === "night" && weather === "moderate rain") {
         return "assets/image/night/modarate rain.png";
 
-    }else if (timeStatus === "night" && weather === "heavy rain at times"){
+    } else if (timeStatus === "night" && weather === "heavy rain at times") {
         return "assets/image/night/heavy rain.png";
 
-    }else if (timeStatus === "night" && weather === "heavy rain"){
+    } else if (timeStatus === "night" && weather === "heavy rain") {
         return "assets/image/night/heavy rain.png";
 
-    }else if (timeStatus === "night" && weather === "light freezing rain"){
+    } else if (timeStatus === "night" && weather === "light freezing rain") {
         return "assets/image/night/light rain.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy freezing rain"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy freezing rain") {
         return "assets/image/night/heavy rain.png";
 
-    }else if (timeStatus === "night" && weather === "light sleet"){
+    } else if (timeStatus === "night" && weather === "light sleet") {
         return "assets/image/night/patchy sleet possible.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy sleet"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy sleet") {
         return "assets/image/night/sleet shower.png";
 
-    }else if (timeStatus === "night" && weather === "patchy light snow"){
+    } else if (timeStatus === "night" && weather === "patchy light snow") {
         return "assets/image/night/patchy snow possible.png";
 
-    }else if (timeStatus === "night" && weather === "light snow"){
+    } else if (timeStatus === "night" && weather === "light snow") {
         return "assets/image/night/patchy snow possible.png";
 
-    }else if (timeStatus === "night" && weather === "patchy moderate snow"){
+    } else if (timeStatus === "night" && weather === "patchy moderate snow") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "moderate snow"){
+    } else if (timeStatus === "night" && weather === "moderate snow") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "patchy heavy snow"){
+    } else if (timeStatus === "night" && weather === "patchy heavy snow") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "heavy snow"){
+    } else if (timeStatus === "night" && weather === "heavy snow") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "ice pellets"){
+    } else if (timeStatus === "night" && weather === "ice pellets") {
         return "assets/image/night/ice pleetes.png";
 
-    }else if (timeStatus === "night" && weather === "light rain shower"){
+    } else if (timeStatus === "night" && weather === "light rain shower") {
         return "assets/image/night/light rain.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy rain shower"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy rain shower") {
         return "assets/image/night/heavy rain.png";
 
-    }else if (timeStatus === "night" && weather === "torrential rain shower"){
+    } else if (timeStatus === "night" && weather === "torrential rain shower") {
         return "assets/image/night/modarate rain.png";
 
-    }else if (timeStatus === "night" && weather === "light sleet showers"){
+    } else if (timeStatus === "night" && weather === "light sleet showers") {
         return "assets/image/night/sleet shower.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy sleet showers"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy sleet showers") {
         return "assets/image/night/sleet shower.png";
 
-    }else if (timeStatus === "night" && weather === "light snow showers"){
+    } else if (timeStatus === "night" && weather === "light snow showers") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy snow showers"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy snow showers") {
         return "assets/image/night/modarate & heavy snow.png";
 
-    }else if (timeStatus === "night" && weather === "light showers of ice pellets"){
+    } else if (timeStatus === "night" && weather === "light showers of ice pellets") {
         return "assets/image/night/ice pleetes.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy showers of ice pellets"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy showers of ice pellets") {
         return "assets/image/night/ice pleetes.png";
 
-    }else if (timeStatus === "night" && weather === "patchy light rain with thunder"){
+    } else if (timeStatus === "night" && weather === "patchy light rain with thunder") {
         return "assets/image/night/light rain with thunder.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy rain with thunder"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy rain with thunder") {
         return "assets/image/night/heavy rain with thunder.png";
 
-    }else if (timeStatus === "night" && weather === "patchy light snow with thunder"){
+    } else if (timeStatus === "night" && weather === "patchy light snow with thunder") {
         return "assets/image/night/light snow with thunder.png";
 
-    }else if (timeStatus === "night" && weather === "moderate or heavy snow with thunder"){
+    } else if (timeStatus === "night" && weather === "moderate or heavy snow with thunder") {
         return "assets/image/night/light snow with thunder.png";
     }
 }
