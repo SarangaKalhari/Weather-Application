@@ -1,21 +1,4 @@
-console.log("Js lodded!")
-
 let api_key = "4b08e55e58a345ee98c193641261801&q";
-
-async function callApi(city) {
-    await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
-    )
-        .then(responce => responce.json())
-        .then(data => {
-
-            setCurrentDetails(data);
-            setHourlyForecast(data.forecast.forecastday);
-            setWeeklyForecast(data.forecast);
-
-        })
-}
-
 
 // -----Calculate Date format-------
 let date = new Date();
@@ -27,7 +10,6 @@ formatDate = {
 }
 let currentDate = date.toLocaleDateString("en-US", formatDate);
 
-
 // ---------Calculate Time -----------
 let now = new Date();
 formatTime = {
@@ -36,10 +18,8 @@ formatTime = {
     "hour12": `false`
 }
 let currentTime = now.toLocaleTimeString("en-US", formatTime);
-console.log(currentTime);
 
 let currentHour = now.getHours();
-console.log(currentHour)
 
 let timeStatus = detectTimeStatus(currentHour);
 
@@ -48,15 +28,15 @@ function detectTimeStatus(currentHour) {
     let timeStatus;
     if (currentHour >= 6 && currentHour < 18) {
         timeStatus = "day";
-        console.log(timeStatus);
 
     } else {
         timeStatus = "night";
-        console.log(timeStatus);
 
     }
     return timeStatus;
 }
+
+
 
 
 // --------Get ID & Set Current Data----------
@@ -133,102 +113,6 @@ function setCurrentDetails(currentDetails) {
 }
 
 
-// ---------Set Hourly Data 24h---------
-
-function setHourlyForecast(forecast) {
-
-    const container = document.getElementById("hourly_container");
-    container.innerHTML = ""; // clear old cards
-
-    // ---merge today & tomorrow hourly data in array----
-    let todayHours = forecast[0].hour;
-    let tomorrowHours = forecast[1].hour;
-    let hourlyDataArray = [...todayHours, ...tomorrowHours];
-    console.log(hourlyDataArray);
-
-    // console.log(forecast)
-    // console.log(tomorrowHours)
-    let nowHour = currentHour;
-
-    let nextHours = hourlyDataArray.slice(nowHour, nowHour + 24);
-    console.log(nextHours)
-
-    nextHours.forEach(hour => {
-
-        // Format time → "02 PM"
-        let time = new Date(hour.time).toLocaleTimeString([], {
-            "hour": '2-digit',
-            "minute": '2-digit',
-            "hour12": `false`
-        });
-        // console.log(time.getHours());
-
-        let dateObj = new Date(hour.time);
-
-        // Detect day/night
-        let timeStat = detectTimeStatus(dateObj.getHours());
-        // console.log(timeStat);
-
-        // Create card
-        const card = document.createElement("div");
-        card.className = "min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center";
-
-        card.innerHTML = `
-        <p class="text-sm text-gray-400">${time}</p>
-        <img src="${setWeatherImage(timeStat, hour.condition.text)}" class="w-10 h-10 mx-auto my-2">
-        <p class="font-semibold">${hour.temp_c}°C</p>
-        <p class="text-xs text-gray-400">${hour.condition.text}</p>
-    `;
-
-        container.appendChild(card);
-    });
-
-
-}
-
-
-// ---------Set Weekly Data -----------
-
-function setWeeklyForecast(weekly_forecast) {
-    const weeklyContainer = document.getElementById("weekly_forecast");
-    weeklyContainer.innerHTML = ""; // clear old cards
-    // let timeSt = "day";
-
-    weekly_forecast.forecastday.forEach(day => {
-        const card = document.createElement("div");
-        card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-lg hover:scale-105 transition-transform";
-        // getWeatherIcon(day.day.condition.icon)
-
-        card.innerHTML = `
-      <p class="text-xl text-gray-400 mb-2">${day.date}</p>
-      <img src="${setWeatherImage("day", day.day.condition.text)}" class="w-20 h-20 my-3 mx-auto" alt="${day.day.condition.text}">
-      <p class="text-white font-medium mb-1">${day.day.condition.text}</p>
-      <span class="text-gray-300">
-        ${day.day.maxtemp_c}° / ${day.day.mintemp_c}°
-      </span>
-    `;
-
-        weeklyContainer.appendChild(card);
-    });
-}
-
-
-// ----------Searching Location--------
-searchCity.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        let city = searchCity.value;
-        console.log(city);
-        callApi(city);
-    }
-});
-
-searchBtn.addEventListener("click", () => {
-    let city = searchCity.value;
-    console.log(city);
-    callApi(city);
-});
-
-
 // --------Check UV level------
 checkUVLevel = (uvIndex) => {
 
@@ -302,6 +186,110 @@ checkVisibility = (visibility) => {
     }
 
 }
+
+
+// ---------Set Hourly Data 24h---------
+
+function setHourlyForecast(forecast) {
+
+    const container = document.getElementById("hourly_container");
+    container.innerHTML = ""; // clear old cards
+
+
+    // ---merge today & tomorrow hourly data in array----
+    let todayHours = forecast[0].hour;
+    let tomorrowHours = forecast[1].hour;
+    let hourlyDataArray = [...todayHours, ...tomorrowHours];
+    
+    let nowHour = currentHour;
+
+    let nextHours = hourlyDataArray.slice(nowHour, nowHour + 24);
+
+    nextHours.forEach(hour => {
+
+        // Format time → "02 PM"
+        let time = new Date(hour.time).toLocaleTimeString([], {
+            "hour": '2-digit',
+            "minute": '2-digit',
+            "hour12": `false`
+        });
+
+        let dateObj = new Date(hour.time);
+
+        // Detect day/night
+        let timeStat = detectTimeStatus(dateObj.getHours());
+
+        // Create card
+        const card = document.createElement("div");
+        card.className = "min-w-[90px] bg-[#0b1220] rounded-xl p-3 text-center";
+
+        card.innerHTML = `
+        <p class="text-sm text-gray-400">${time}</p>
+        <img src="${setWeatherImage(timeStat, hour.condition.text)}" class="w-10 h-10 mx-auto my-2">
+        <p class="font-semibold">${hour.temp_c}°C</p>
+        <p class="text-xs text-gray-400">${hour.condition.text}</p>
+    `;
+
+        container.appendChild(card);
+    });
+
+
+}
+
+// ---------Set Weekly Data -----------
+
+function setWeeklyForecast(weekly_forecast) {
+    const weeklyContainer = document.getElementById("weekly_forecast");
+    weeklyContainer.innerHTML = ""; // clear old cards
+
+    weekly_forecast.forecastday.forEach(day => {
+        const card = document.createElement("div");
+        card.className = "min-w-[200px] min-h-[250px] bg-[#0b1220] rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-lg hover:scale-105 transition-transform";
+
+        card.innerHTML = `
+      <p class="text-xl text-gray-400 mb-2">${day.date}</p>
+      <img src="${setWeatherImage("day", day.day.condition.text)}" class="w-20 h-20 my-3 mx-auto" alt="${day.day.condition.text}">
+      <p class="text-white font-medium mb-1">${day.day.condition.text}</p>
+      <span class="text-gray-300">
+        ${day.day.maxtemp_c}° / ${day.day.mintemp_c}°
+      </span>
+    `;
+
+        weeklyContainer.appendChild(card);
+    });
+}
+
+
+async function callApi(city) {
+    await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
+    )
+        .then(responce => responce.json())
+        .then(data => {
+
+            setCurrentDetails(data);
+            setHourlyForecast(data.forecast.forecastday);
+            setWeeklyForecast(data.forecast);
+
+        })
+}
+
+
+
+// ----------Searching Location--------
+searchCity.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        let city = searchCity.value;
+        callApi(city);
+    }
+});
+
+searchBtn.addEventListener("click", () => {
+    let city = searchCity.value;
+    callApi(city);
+});
+
+
 
 // -------Set Weather Images--------
 function setWeatherImage(timeStatus, weatherStatus) {
