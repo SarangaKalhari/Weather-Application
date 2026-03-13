@@ -1,4 +1,4 @@
-let api_key = "4b08e55e58a345ee98c193641261801&q";
+let api_key = "15d7a03e529d457b95e150639261303";
 
 // -----Calculate Date format-------
 let date = new Date();
@@ -200,7 +200,7 @@ function setHourlyForecast(forecast) {
     let todayHours = forecast[0].hour;
     let tomorrowHours = forecast[1].hour;
     let hourlyDataArray = [...todayHours, ...tomorrowHours];
-    
+
     let nowHour = currentHour;
 
     let nextHours = hourlyDataArray.slice(nowHour, nowHour + 24);
@@ -260,36 +260,40 @@ function setWeeklyForecast(weekly_forecast) {
 }
 
 
-async function callApi(city) {
-    await fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=${api_key}=${city}&days=7&aqi=no&alerts=no`
-    )
-        .then(responce => responce.json())
-        .then(data => {
 
-            setCurrentDetails(data);
-            setHourlyForecast(data.forecast.forecastday);
-            setWeeklyForecast(data.forecast);
+    async function callApi(city) {
+        await fetch(
+            `https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${city}&days=7&aqi=no&alerts=no`
+        )
+            .then(responce => responce.json())
+            .then(data => {
 
-        })
-}
+                setCurrentDetails(data);
+                setHourlyForecast(data.forecast.forecastday);
+                setWeeklyForecast(data.forecast);
 
+            })
+    }
 
+    let searchCity = document.getElementById("searchCity");
+    let searchBtn = document.getElementById("searchBtn");
 
-// ----------Searching Location--------
-searchCity.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
+    // ----------Searching Location--------
+    searchCity.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            let city = searchCity.value;
+            callApi(city);
+            console.log(city);
+        }
+    });
+
+    searchBtn.addEventListener("click", () => {
         let city = searchCity.value;
         callApi(city);
         console.log(city);
-    }
-});
+    });
 
-searchBtn.addEventListener("click", () => {
-    let city = searchCity.value;
-    callApi(city);
-    console.log(city);
-});
+
 
 
 
@@ -593,4 +597,5 @@ function setWeatherImage(timeStatus, weatherStatus) {
     } else if (timeStatus === "night" && weather === "moderate or heavy snow with thunder") {
         return "assets/image/night/light snow with thunder.png";
     }
+
 }
